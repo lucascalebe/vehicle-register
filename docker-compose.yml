@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  algafood-mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
