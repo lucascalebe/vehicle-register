@@ -25,5 +25,5 @@ public class VehicleInputModel {
   private String description;
 
   @NotNull
-  private boolean sold;
+  private Boolean sold;
 }
