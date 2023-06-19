@@ -1,4 +1,4 @@
-package com.example.vehicleregister;
+package com.tinnova.vehicleregister;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
