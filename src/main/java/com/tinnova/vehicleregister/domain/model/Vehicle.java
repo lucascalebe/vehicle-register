@@ -13,7 +13,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.Year;
 
 @Entity
 @Getter
@@ -36,7 +35,7 @@ public class Vehicle extends BaseEntity {
   private VehicleBrand brand;
 
   @Column(name = "vehicle_year", nullable = false)
-  private Year year;
+  private Integer year;
 
   @Column
   private String description;
