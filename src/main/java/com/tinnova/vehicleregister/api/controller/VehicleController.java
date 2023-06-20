@@ -5,6 +5,7 @@ import com.tinnova.vehicleregister.api.assembler.VehicleInputDisassembler;
 import com.tinnova.vehicleregister.api.assembler.VehicleResponseModelAssembler;
 import com.tinnova.vehicleregister.api.model.VehicleResponseModel;
 import com.tinnova.vehicleregister.api.model.input.VehicleInputModel;
+import com.tinnova.vehicleregister.domain.exception.BusinessException;
 import com.tinnova.vehicleregister.domain.model.Vehicle;
 import com.tinnova.vehicleregister.domain.repository.VehicleRepository;
 import com.tinnova.vehicleregister.domain.repository.filter.VehicleFilter;
@@ -94,6 +95,10 @@ public class VehicleController {
     Vehicle vehicleOrigin = objectMapper.convertValue(fieldsOrigin, Vehicle.class);
 
     fieldsOrigin.forEach((propertyName, propertyValue) -> {
+      if (propertyName.equals("id")) {
+        throw new BusinessException("The id can not be changed.");
+      }
+
       Field field = ReflectionUtils.findField(Vehicle.class, propertyName);
       field.setAccessible(true);
 
