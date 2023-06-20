@@ -8,7 +8,11 @@ import lombok.Setter;
 @Setter
 public class VehicleFilter {
 
+  private String vehicle;
+
   private VehicleBrand brand;
 
   private Integer year;
+
+  private Boolean sold;
 }
