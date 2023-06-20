@@ -26,6 +26,7 @@
 			**/com/tinnova/vehicleregister/domain/repository/**
 			**/com/tinnova/vehicleregister/domain/model/**
 			**/com/tinnova/vehicleregister/domain/exception/**
+			**/com/tinnova/vehicleregister/util/**
 		</sonar.coverage.exclusions>
 
 	</properties>

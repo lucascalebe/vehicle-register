@@ -1,0 +1,16 @@
+{
+  "content": [
+    {
+      "id": 2,
+      "vehicle": "ARGO",
+      "brand": "FIAT",
+      "year": 2023,
+      "description": "carro novo",
+      "sold": false
+    }
+  ],
+  "size": 10,
+  "totalElements": 1,
+  "totalPages": 1,
+  "number": 0
+}
