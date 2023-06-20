@@ -15,7 +15,7 @@ services:
       - vehicle-register-network
 
   vehicle-register-api:
-    image: vehicle-register
+    image: lucascalebe/vehicle-register-api
     command: ["/wait-for-it.sh", "vehicle-register-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
     environment:
       DB_HOST: vehicle-register-mysql
