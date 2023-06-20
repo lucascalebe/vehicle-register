@@ -7,7 +7,6 @@ import com.tinnova.vehicleregister.api.model.VehicleResponseModel;
 import com.tinnova.vehicleregister.api.model.input.VehicleInputModel;
 import com.tinnova.vehicleregister.domain.exception.BusinessException;
 import com.tinnova.vehicleregister.domain.model.Vehicle;
-import com.tinnova.vehicleregister.domain.repository.VehicleRepository;
 import com.tinnova.vehicleregister.domain.repository.filter.VehicleFilter;
 import com.tinnova.vehicleregister.domain.service.VehicleService;
 import com.tinnova.vehicleregister.infrastructure.repository.spec.VehicleSpecs;
@@ -41,13 +40,12 @@ import java.util.Map;
 public class VehicleController {
 
   private final VehicleService vehicleService;
-  private final VehicleRepository vehicleRepository;
   private final VehicleResponseModelAssembler vehicleAssembler;
   private final VehicleInputDisassembler vehicleDisassembler;
 
   @GetMapping
   public Page<VehicleResponseModel> findAllVehicles(VehicleFilter filter, @PageableDefault(size = 10) Pageable pageable) {
-    Page<Vehicle> vehiclePage = vehicleRepository.findAll(VehicleSpecs.usingFilter(filter), pageable);
+    Page<Vehicle> vehiclePage = vehicleService.findAll(VehicleSpecs.usingFilter(filter), pageable);
 
     List<VehicleResponseModel> vehicleResponseModels = vehicleAssembler.toCollectionModel(vehiclePage.getContent());
 

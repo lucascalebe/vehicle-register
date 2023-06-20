@@ -6,6 +6,9 @@ import com.tinnova.vehicleregister.domain.repository.VehicleRepository;
 import com.tinnova.vehicleregister.domain.service.VehicleService;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class VehicleServiceImpl implements VehicleService {
 
   public final VehicleRepository vehicleRepository;
+
+  @Override
+  public Page<Vehicle> findAll(Specification<Vehicle> spec, Pageable pageable) {
+    return vehicleRepository.findAll(spec, pageable);
+  }
 
   @Override
   public Vehicle findById(Long vehicleId) {
