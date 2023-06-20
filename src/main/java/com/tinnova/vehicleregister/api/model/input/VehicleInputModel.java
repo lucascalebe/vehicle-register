@@ -1,6 +1,7 @@
 package com.tinnova.vehicleregister.api.model.input;
 
 import com.tinnova.vehicleregister.domain.model.VehicleBrand;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,18 +13,23 @@ import javax.validation.constraints.Positive;
 @Setter
 public class VehicleInputModel {
 
+  @Schema(example = "ARGO")
   @NotBlank
   private String vehicle;
 
+  @Schema(example = "FIAT")
   @NotNull
   private VehicleBrand brand;
 
+  @Schema(example = "2020")
   @NotNull
   @Positive
   private Integer year;
 
+  @Schema(example = "Brand new")
   private String description;
 
+  @Schema(example = "false")
   @NotNull
   private Boolean sold;
 }

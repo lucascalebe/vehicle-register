@@ -5,6 +5,7 @@ import com.tinnova.vehicleregister.api.assembler.VehicleInputDisassembler;
 import com.tinnova.vehicleregister.api.assembler.VehicleResponseModelAssembler;
 import com.tinnova.vehicleregister.api.model.VehicleResponseModel;
 import com.tinnova.vehicleregister.api.model.input.VehicleInputModel;
+import com.tinnova.vehicleregister.api.openapi.controller.VehicleControllerOpenApi;
 import com.tinnova.vehicleregister.domain.exception.BusinessException;
 import com.tinnova.vehicleregister.domain.model.Vehicle;
 import com.tinnova.vehicleregister.domain.repository.filter.VehicleFilter;
@@ -37,12 +38,13 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/vehicles", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-public class VehicleController {
+public class VehicleController implements VehicleControllerOpenApi {
 
   private final VehicleService vehicleService;
   private final VehicleResponseModelAssembler vehicleAssembler;
   private final VehicleInputDisassembler vehicleDisassembler;
 
+  @Override
   @GetMapping
   public Page<VehicleResponseModel> findAllVehicles(VehicleFilter filter, @PageableDefault(size = 10) Pageable pageable) {
     Page<Vehicle> vehiclePage = vehicleService.findAll(VehicleSpecs.usingFilter(filter), pageable);
@@ -52,11 +54,13 @@ public class VehicleController {
     return new PageImpl<>(vehicleResponseModels, pageable, vehiclePage.getTotalElements());
   }
 
+  @Override
   @GetMapping("/{vehicleId}")
   public VehicleResponseModel findVehicle(@PathVariable Long vehicleId) {
     return vehicleAssembler.toModel(vehicleService.findById(vehicleId));
   }
 
+  @Override
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public VehicleResponseModel addVehicle(@RequestBody @Valid VehicleInputModel vehicleInput) {
@@ -64,6 +68,7 @@ public class VehicleController {
     return vehicleAssembler.toModel(vehicleService.save(vehicle));
   }
 
+  @Override
   @PutMapping("/{vehicleId}")
   public VehicleResponseModel updateVehicle(@PathVariable Long vehicleId, @RequestBody @Valid VehicleInputModel vehicleInput) {
     Vehicle vehicleFromDb = vehicleService.findById(vehicleId);
@@ -73,6 +78,7 @@ public class VehicleController {
     return vehicleAssembler.toModel(vehicleService.save(vehicleFromDb));
   }
 
+  @Override
   @PatchMapping("/{vehicleId}")
   public VehicleResponseModel partialUpdateVehicle(@PathVariable Long vehicleId, @RequestBody Map<String, Object> fields) {
     Vehicle vehicle = vehicleService.findById(vehicleId);
@@ -82,6 +88,7 @@ public class VehicleController {
     return vehicleAssembler.toModel(vehicleService.save(vehicle));
   }
 
+  @Override
   @DeleteMapping("/{vehicleId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteVehicle(@PathVariable Long vehicleId) {
