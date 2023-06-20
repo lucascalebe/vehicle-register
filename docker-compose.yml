@@ -1,9 +1,27 @@
 version: "3.9"
 
+networks:
+  vehicle-register-network:
+    driver: bridge
+
 services:
-  vehicleregister-mysql:
+  vehicle-register-mysql:
     image: mysql:8.0
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
       - "3306:3306"
+    networks:
+      - vehicle-register-network
+
+  vehicle-register-api:
+    image: vehicle-register
+    command: ["/wait-for-it.sh", "vehicle-register-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
+    environment:
+      DB_HOST: vehicle-register-mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - vehicle-register-network
+    depends_on:
+      - vehicle-register-mysql
