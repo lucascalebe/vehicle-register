@@ -31,13 +31,6 @@ Obs: Não foi possível concluir todos os testes da API devido ao prazo, essa é
 ### Caso ocorra problema para subir o Docker em Windows:
 - Clone com: git clone https://github.com/lucascalebe/vehicle-register.git --config core.autocrlf=input
 
-### Testando a aplicação deployada na AWS:
-- http://vehicle-register-lb-2063437836.us-east-1.elb.amazonaws.com/
-
-### Documentação da API :speech_balloon:
-
-- http://vehicle-register-lb-2063437836.us-east-1.elb.amazonaws.com/swagger-ui/index.html
-
 ### subir aplicação local via DOCKER :point_down:
 
 - Iniciar docker no PC
