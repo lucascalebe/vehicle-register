@@ -15,8 +15,6 @@ API REST que faz CRUD de cadastro de carros.
 - Deploy AWS (Finalizado)
 - Pipeline integrada ao Sonarcloud(Finalizada)
 
-Obs: Não foi possível concluir todos os testes da API devido ao prazo, essa é a razão da pipeline estar quebrando na cobertura.
-
 ### Pré-requisitos :thumbsup:
 
 - JDK 11 e Maven
